@@ -2,6 +2,7 @@ package com.test.todolist
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -74,6 +75,12 @@ class DashBoardActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.toDoName.text = list[position].name
+            holder.toDoName.setOnClickListener{
+                val intent = Intent(activity, ItemActivity::class.java)
+                intent.putExtra(INTENT_TODO_ID, list[position].id)
+                intent.putExtra(INTENT_TODO_NAME, list[position].name)
+                activity.startActivity(intent)
+            }
 
         }
 
